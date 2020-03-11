@@ -19,7 +19,18 @@
  Nest two similar events somewhere in the site and prevent the event propagation properly
  Stop the navigation items from refreshing the page by using preventDefault()*/
 
-//---------------------------->>mousemove<<------------------------------------------- 01
+//
+
+document.querySelector("#homeLink").addEventListener("click", function(e) {
+  alert("You clicked HOME");
+  e.stopPropagation();
+});
+
+document.querySelector(".nav").addEventListener("click", function(event) {
+  document.querySelector(".nav").style.backgroundColor = "red";
+});
+
+// ---------------------------->>mousemove<<-------------------------------------------
 
 const colorFul = document.querySelector("header");
 
@@ -27,26 +38,26 @@ colorFul.addEventListener("mousemove", () => {
   colorFul.style.backgroundColor = "yellow";
 });
 
-//----------------------------->mouseout 1<<-------------------------------------------- 02
+//----------------------------->mouseout 1<<--------------------------------------------
 const colorFulTwo = document.querySelector("header");
 
 colorFulTwo.addEventListener("mouseout", () => {
   colorFulTwo.style.backgroundColor = "white";
 });
 
-//-------------------------------->> mouseover <------------------------------------------ 03
+//-------------------------------->> mouseover <------------------------------------------
 
-document.getElementById("busPic").addEventListener("mouseover", function() {
+document.getElementById("busPic").addEventListener("mouseover", () => {
   document.getElementById("busPic").style.width = "50%";
 });
 
-//------------>mouseout 2<<--------------------
+//------------>mouseout 2<<---------------------------------------------------------------
 
-document.getElementById("busPic").addEventListener("mouseout", function() {
+document.getElementById("busPic").addEventListener("mouseout", () => {
   document.getElementById("busPic").style.width = "100%";
 });
 
-//------------------------------------->drag<<--------------------------------------------- 04
+//------------------------------------->drag<<---------------------------------------------
 const dragItem = document.querySelector("h2");
 
 document.addEventListener("drag", () => {}, false);
@@ -115,7 +126,7 @@ document.addEventListener(
   false
 );
 
-//-------------------------------------->> keydown <<<----------------------------------------- 05
+//-------------------------------------->> keypress<<<-----------------------------------------
 
 const banana = document.querySelector("*");
 
@@ -123,16 +134,49 @@ banana.addEventListener("keypress", event => {
   banana.style.backgroundColor = "red";
 });
 
-//--------------------------------------->>dbclick<---------------------------------------------- 06
+document.addEventListener("keydown", event => {
+  if (event.key === "c") {
+    document.body.style.backgroundColor = "white";
+  }
+});
+//--------------------------------------->>dbclick<----------------------------------------------
 var variableTwo = document
   .querySelector(".content-section")
   .addEventListener("dblclick", function() {
     document.getElementById("adventurePic").style.width = "50%";
   });
 
-//------------------------------------------>> click <<<------------------------------------------ 07
+var variableTwo = document
+  .querySelector(".content-section")
+  .addEventListener("click", function() {
+    document.getElementById("adventurePic").style.width = "100%";
+  });
+
+//------------------------------------------>> click <<<------------------------------------------
 const changeImg = document.querySelector(".img-fluid-rounded");
 
 changeImg.addEventListener("click", () => {
   changeImg.src = "https://tinypng.com/images/social/website.jpg";
+});
+
+//---------------------->mouse enter / mouse leave <--------------------------------------
+
+const boatImg = document.querySelector(".content-destination img");
+boatImg.addEventListener("mouseenter", () => {
+  boatImg.style.transform = "scale(1.5)";
+  boatImg.style.transition = "transform 0.5s";
+});
+boatImg.addEventListener("mouseleave", () => {
+  boatImg.style.transform = "scale(1)";
+});
+
+//-------------------------------->>>>keydown<<<<<-----------------------------------------
+
+document.addEventListener("keydown", event => {
+  if (event.key === "a") {
+    document.body.style = "color: blue; background-color: pink";
+  }
+  if (event.key === "b") {
+    document.body.style = "";
+  }
 });
