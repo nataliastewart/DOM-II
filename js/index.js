@@ -19,36 +19,103 @@
  Nest two similar events somewhere in the site and prevent the event propagation properly
  Stop the navigation items from refreshing the page by using preventDefault()*/
 
-// function clickEventHandler(event) {
-//     event.preventDefault()
-//     console.log(event.type + "!!!!");
-//     console.log(event.target)
-//     console.log(event.currentTarget);
+//---------------------------->>mousemove<<------------------------------------------- 01
 
-//     //you can grab any element in the DOM
+const colorFul = document.querySelector("header");
 
-// }
+colorFul.addEventListener("mousemove", () => {
+  colorFul.style.backgroundColor = "yellow";
+});
 
-// homeLink.addEventListener("click", event => {
-//     event.stopPropagation();
-// console.log("SABOTAGING PROPAGATION")
-// })
+//----------------------------->mouseout 1<<-------------------------------------------- 02
+const colorFulTwo = document.querySelector("header");
 
-// document.querySelector("nav").addEventListener("click", clickEventHandler)
+colorFulTwo.addEventListener("mouseout", () => {
+  colorFulTwo.style.backgroundColor = "white";
+});
 
-// document.querySelector(".main-navigation").addEventListener("click",clickEventHandler, {capture: true})
-
-// document.body.addEventListener("click", clickEventHandler)
-
-// document.addEventListener("click", clickEventHandler)
-
-//----------------->> mouseover <--------------------
+//-------------------------------->> mouseover <------------------------------------------ 03
 
 document.getElementById("busPic").addEventListener("mouseover", function() {
   document.getElementById("busPic").style.width = "50%";
 });
 
-//----------->> keydown <<<-----------------
+//------------>mouseout 2<<--------------------
+
+document.getElementById("busPic").addEventListener("mouseout", function() {
+  document.getElementById("busPic").style.width = "100%";
+});
+
+//------------------------------------->drag<<--------------------------------------------- 04
+const dragItem = document.querySelector("h2");
+
+document.addEventListener("drag", () => {}, false);
+
+document.addEventListener(
+  "dragstart",
+  function(event) {
+    // store a ref. on the dragged elem
+    dragItem = event.target;
+    // make it half transparent
+    event.target.style.opacity = 0.5;
+  },
+  false
+);
+
+document.addEventListener(
+  "dragend",
+  function(event) {
+    // reset the transparency
+    event.target.style.opacity = "";
+  },
+  false
+);
+
+document.addEventListener(
+  "dragover",
+  function(event) {
+    // prevent default to allow drop
+    event.preventDefault();
+  },
+  false
+);
+
+document.addEventListener(
+  "dragenter",
+  function(event) {
+    // highlight potential drop target when the draggable element enters it
+    if (event.target.className == "content-section") {
+      event.target.style.background = "pink";
+    }
+  },
+  false
+);
+document.addEventListener(
+  "dragleave",
+  function(event) {
+    // reset background of potential drop target when the draggable element leaves it
+    if (event.target.className == "content-section") {
+      event.target.style.background = "";
+    }
+  },
+  false
+);
+document.addEventListener(
+  "drop",
+  function(event) {
+    // prevent default action (open as link for some elements)
+    event.preventDefault();
+    // move dragged elem to the selected drop target
+    if (event.target.className == "content-section") {
+      event.target.style.background = "";
+      dragItem.parentNode.removeChild(dragItem);
+      event.target.appendChild(dragItem);
+    }
+  },
+  false
+);
+
+//-------------------------------------->> keydown <<<----------------------------------------- 05
 
 const banana = document.querySelector("*");
 
@@ -56,14 +123,14 @@ banana.addEventListener("keypress", event => {
   banana.style.backgroundColor = "red";
 });
 
-//-------->>dbclick<---------
+//--------------------------------------->>dbclick<---------------------------------------------- 06
 var variableTwo = document
   .querySelector(".content-section")
   .addEventListener("dblclick", function() {
     document.getElementById("adventurePic").style.width = "50%";
   });
 
-//----->> click <<<-----
+//------------------------------------------>> click <<<------------------------------------------ 07
 const changeImg = document.querySelector(".img-fluid-rounded");
 
 changeImg.addEventListener("click", () => {

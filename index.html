@@ -35,7 +35,12 @@
     <div class="container home">
       <header class="intro">
         <img id="busPic" src="img/fun-bus.jpg" alt="bus in the sand" />
-        <h2>Welcome To Fun Bus!</h2>
+        <h2
+          draggable="true"
+          ondragstart="event.dataTransfer.setData('text/plain',null)"
+        >
+          Welcome To Fun Bus!
+        </h2>
         <p>
           Traveling expedition modern, clean webdesign blogger clean website
           theme website modern. Design pretty design, travelblogger adventure
